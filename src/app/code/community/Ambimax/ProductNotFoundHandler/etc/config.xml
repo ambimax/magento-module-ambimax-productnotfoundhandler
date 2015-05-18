@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ambimax_ProductNotFoundHandler>
+            <version>1.0.0</version>
+        </Ambimax_ProductNotFoundHandler>
+    </modules>
+    <global>
+        <models>
+            <ambimax_productnotfoundhandler>
+                <class>Ambimax_ProductNotFoundHandler_Model</class>
+            </ambimax_productnotfoundhandler>
+        </models>
+        <helpers>
+            <ambimax_productnotfoundhandler>
+                <class>Ambimax_ProductNotFoundHandler_Helper</class>
+            </ambimax_productnotfoundhandler>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <ambimax_productnotfoundhandler>
+                <use>standard</use>
+                <args>
+                    <module>Ambimax_ProductNotFoundHandler</module>
+                    <frontName>productnotfoundhandler</frontName>
+                </args>
+            </ambimax_productnotfoundhandler>
+        </routers>
+    </frontend>
+</config>

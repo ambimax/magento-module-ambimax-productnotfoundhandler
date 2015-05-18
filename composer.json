@@ -1,0 +1,15 @@
+{
+    "name": "Ambimax/ProductNotFoundHandler",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Handles product redirect if sku is found in url",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Tobias Schifftner",
+            "email":"ts@ambimax.de"
+        }
+    ]
+}

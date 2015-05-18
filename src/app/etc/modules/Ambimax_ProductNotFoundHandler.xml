@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ambimax_ProductNotFoundHandler>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Catalog/>
+            </depends>
+        </Ambimax_ProductNotFoundHandler>
+    </modules>
+</config>
