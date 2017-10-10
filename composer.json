@@ -1,6 +1,6 @@
 {
-    "name": "Ambimax/ProductNotFoundHandler",
-    "license": "OSL-3.0",
+    "name": "ambimax/magento-module-ambimax-productnotfoundhandler",
+    "license": "MIT",
     "type": "magento-module",
     "description": "Handles product redirect if sku is found in url",
     "require": {
