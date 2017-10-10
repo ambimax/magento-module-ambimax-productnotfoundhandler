@@ -55,20 +55,23 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
         // If the product is a child of a parent product we rather show the parent
         if ( $parentUrl = $this->_getParentUrl($product) ) {
             $this->redirect($parentUrl);
-            exit;
+            exit; //@codingStandardsIgnoreLine
         }
 
         // Redirect to product url
         if ( $productUrl = $product->getProductUrl(true) ) {
             $this->redirect($productUrl);
-            exit;
+            exit; //@codingStandardsIgnoreLine
         }
 
         // Fire event for other modules to take a shot
-        Mage::dispatchEvent('ambimax_productnotfoundhandler_missed', array(
-            'sku'     => $sku,
-            'product' => $product
-        ));
+        Mage::dispatchEvent(
+            'ambimax_productnotfoundhandler_missed',
+            array(
+                'sku'     => $sku,
+                'product' => $product
+            )
+        );
 
         return false;
     }
@@ -127,10 +130,12 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
      */
     public function redirect($url)
     {
+        //@codingStandardsIgnoreStart
         header('HTTP/1.1 301 Moved Permanently');
         header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         header('Pragma: no-cache');
         header('Location: ' . $url);
         exit;
+        //@codingStandardsIgnoreEnd
     }
 }
