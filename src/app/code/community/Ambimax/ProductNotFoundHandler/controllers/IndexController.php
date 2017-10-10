@@ -42,31 +42,31 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
      */
     protected function _findRewrite()
     {
-        if( ! ($sku = $this->_extractSkuFromRequestUrl())) {
+        if ( !($sku = $this->_extractSkuFromRequestUrl()) ) {
             return false;
         }
 
-        $product = Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+        $product = Mage::getModel('catalog/product')->loadByAttribute('sku', $sku);
 
-        if( ! $product || ! $product->getId()) {
+        if ( !$product || !$product->getId() ) {
             return false;
         }
 
         // If the product is a child of a parent product we rather show the parent
-        if($parentUrl = $this->_getParentUrl($product)) {
+        if ( $parentUrl = $this->_getParentUrl($product) ) {
             $this->redirect($parentUrl);
             exit;
         }
 
         // Redirect to product url
-        if($productUrl = $product->getProductUrl(true)) {
+        if ( $productUrl = $product->getProductUrl(true) ) {
             $this->redirect($productUrl);
             exit;
         }
 
         // Fire event for other modules to take a shot
         Mage::dispatchEvent('ambimax_productnotfoundhandler_missed', array(
-            'sku' => $sku,
+            'sku'     => $sku,
             'product' => $product
         ));
 
@@ -85,18 +85,18 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
         $url = rtrim(Mage::app()->getRequest()->getServer('REQUEST_URI'), $urlSuffix);
         $url = substr(strrchr($url, '/'), 1);
 
-        if(empty($url)) {
+        if ( empty($url) ) {
             return false;
         }
 
         // Figure out length of sku (no sku should be as long as 70 chars or even longer!)
         $skuLength = substr(strrchr($url, "-"), 1);
-        if($skuLength < 70 && $skuLength != (int) $skuLength) {
+        if ( $skuLength < 70 && $skuLength != (int)$skuLength ) {
             return false;
         }
-        $sku = substr($url, -(strlen('-'.$skuLength)+$skuLength), -(strlen('-'.$skuLength)));
+        $sku = substr($url, -(strlen('-' . $skuLength) + $skuLength), -(strlen('-' . $skuLength)));
 
-        return ! empty($sku) ? $sku : false;
+        return !empty($sku) ? $sku : false;
     }
 
     /**
@@ -112,12 +112,12 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
         $parentId = $_read->fetchOne("SELECT parent_id FROM {$superLinkTable} WHERE product_id = {$product->getId()}");
         $product = Mage::getModel('catalog/product')->load($parentId);
 
-        if( ! $product || ! $product->getId()) {
+        if ( !$product || !$product->getId() ) {
             return false;
         }
 
         $url = $product->getProductUrl(true);
-        return ! empty($url) ? $url : false;
+        return !empty($url) ? $url : false;
     }
 
     /**
