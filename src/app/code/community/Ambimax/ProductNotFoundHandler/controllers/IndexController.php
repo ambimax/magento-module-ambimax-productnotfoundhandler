@@ -94,9 +94,10 @@ class Ambimax_ProductNotFoundHandler_IndexController extends Mage_Core_Controlle
 
         // Figure out length of sku (no sku should be as long as 70 chars or even longer!)
         $skuLength = substr(strrchr($url, "-"), 1);
-        if ( $skuLength < 70 && $skuLength != (int)$skuLength ) {
+        if ( !is_numeric($skuLength) || ($skuLength < 70 && $skuLength != (int)$skuLength) ) {
             return false;
         }
+
         $sku = substr($url, -(strlen('-' . $skuLength) + $skuLength), -(strlen('-' . $skuLength)));
 
         return !empty($sku) ? $sku : false;
