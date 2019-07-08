@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ambimax_ProductNotFoundHandler>
-            <version>1.0.0</version>
+            <version>1.0.2</version>
         </Ambimax_ProductNotFoundHandler>
     </modules>
     <global>
